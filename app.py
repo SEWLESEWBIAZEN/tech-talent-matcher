@@ -119,6 +119,14 @@ elif st.session_state.get('authentication_status'):
 
     # Sidebar
     with st.sidebar:
+        # Welcome message and logout at the top
+        st.write(f'**Welcome {st.session_state["name"]}!**')
+        if st.button("🚪 Logout"):
+            authenticator.logout(location='sidebar')
+            st.rerun()
+            
+        st.divider()
+        
         st.subheader("🛠️ Admin Controls")
         if st.button("Manage Manual Scenarios"):
             st.session_state.show_admin_dashboard = True
@@ -134,7 +142,7 @@ elif st.session_state.get('authentication_status'):
         if st.session_state.get("show_api_key_manager"):
             api_key_manager(authenticator, config)
             
-        st.divider()
+        # st.divider()
 
         # Check if user has a saved key
         current_user = st.session_state.get("username")
@@ -249,5 +257,3 @@ elif st.session_state.get('authentication_status'):
                                 st.markdown(roadmap)
         else:
             st.warning("👆 Please enter your API key in the sidebar to generate your personalized AI career profile.")
-    st.write(f'Welcome *{st.session_state["name"]}*')
-    authenticator.logout('Logout', 'main')
