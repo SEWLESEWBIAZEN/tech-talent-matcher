@@ -1,0 +1,102 @@
+[
+    {
+        "title": "The Morning Anomaly",
+        "setup": "You are reviewing a peer-reviewed complexity proof in the faculty lounge before stand-up. A critical lemma in a graph-coloring algorithm contains a logical gap, and the PI will ask about it in ten minutes.",
+        "output": "Lemma 4.2: If G is 3-colorable, then \u03c7(G) \u2264 3 \u2200v \u2208 V. [ERROR: Contradicts counterexample v=7 in induced subgraph H]",
+        "prompt": "What is your first instinct to handle the discrepancy?",
+        "options": {
+            "A": {
+                "text": "Fire up a proof assistant (Coq/Lean) to formalize the lemma and isolate the exact logical break.",
+                "result": "You are drawn to formal verification and pure theoretical repair\u2014archetype: Theoretical CS Researcher."
+            },
+            "B": {
+                "text": "Write a Python script to generate random graphs and stress-test the coloring algorithm empirically.",
+                "result": "You prefer empirical validation and experimental systems\u2014archetype: Experimental/Applied CS Researcher."
+            },
+            "C": {
+                "text": "Draft a concise pedagogical note explaining the proof gap for your graduate seminar syllabus.",
+                "result": "You prioritize knowledge dissemination and education\u2014archetype: CS Educator & Science Communicator."
+            }
+        }
+    },
+    {
+        "title": "The Stand-Up Reckoning",
+        "setup": "Your action confirmed the flaw is real. At the 11:00 lab stand-up, the director announces a funding deadline looms and asks how the lab should strategically position this discovery.",
+        "output": "",
+        "prompt": "How do you propose the lab responds strategically?",
+        "options": {
+            "A": {
+                "text": "Propose a new theoretical framework extending the proof with an added constraint model, seeking pure mathematics funding.",
+                "result": "You push for deep theoretical advancement\u2014archetype: Theoretical CS Researcher."
+            },
+            "B": {
+                "text": "Pivot the grant narrative to benchmark real-world network failures caused by this algorithmic gap, targeting applied systems funding.",
+                "result": "You leverage discovery for practical impact\u2014archetype: Experimental/Applied CS Researcher."
+            },
+            "C": {
+                "text": "Suggest an open-access workshop series and updated curriculum module to prevent future misuse in education.",
+                "result": "You focus on institutional learning\u2014archetype: CS Educator & Science Communicator."
+            }
+        }
+    },
+    {
+        "title": "The Grant Review",
+        "setup": "The NSF-style review panel arrives at noon. They scrutinize your strategic proposal and demand deliverables aligned with the path you chose after the stand-up.",
+        "output": "Deliverable Metrics: Theorem proofs (A), System benchmarks (B), MOOC enrollment & citation reach (C)",
+        "prompt": "Which deliverable do you defend as the primary milestone?",
+        "options": {
+            "A": {
+                "text": "Defend a 12-month proof roadmap with formal verification milestones and peer-reviewed conjectures.",
+                "result": "You thrive in rigorous theoretical milestones\u2014archetype: Theoretical CS Researcher."
+            },
+            "B": {
+                "text": "Present a prototype detector running on live cluster traffic with reproducible benchmark datasets.",
+                "result": "You value tangible, measurable systems\u2014archetype: Experimental/Applied CS Researcher."
+            },
+            "C": {
+                "text": "Show enrollment projections for the revised open curriculum and peer-review guidelines for textbooks.",
+                "result": "You measure success by educational reach\u2014archetype: CS Educator & Science Communicator."
+            }
+        }
+    },
+    {
+        "title": "The Replication Crisis",
+        "setup": "At 3:00 PM, a panicked first-year PhD student finds their replication study broken\u2014directly tied to the flawed theorem from this morning. The advisor is at a conference and you are the senior researcher present.",
+        "output": "Traceback (replication): AssertionError: \u03c7(G) != 3 in subgraph H (see Lemma 4.2).",
+        "prompt": "How do you guide the student through the crisis?",
+        "options": {
+            "A": {
+                "text": "Sit with them at the whiteboard to derive a corrected sub-lemma and salvage the theoretical contribution.",
+                "result": "You mentor through rigorous logic\u2014archetype: Theoretical CS Researcher."
+            },
+            "B": {
+                "text": "Help them redesign the replication with control graphs, synthetic datasets, and statistical power analysis.",
+                "result": "You mentor through experimental design\u2014archetype: Experimental/Applied CS Researcher."
+            },
+            "C": {
+                "text": "Encourage them to document the failure, write a replication report, and present it at the student journal club.",
+                "result": "You mentor through scholarly communication\u2014archetype: CS Educator & Science Communicator."
+            }
+        }
+    },
+    {
+        "title": "The Offer",
+        "setup": "As evening falls, the department chair offers you a tenure-track research position shaped entirely by how you navigated the day's crisis, funding defense, and mentorship.",
+        "output": "",
+        "prompt": "Which door do you enter to begin your permanent research career?",
+        "options": {
+            "A": {
+                "text": "Accept leadership of the Formal Methods and Algorithms Group, pursuing tenure through peer-reviewed proofs and conjectures.",
+                "result": "Your ideal path is pure theoretical discovery\u2014archetype: Theoretical CS Professor."
+            },
+            "B": {
+                "text": "Accept directorship of the Applied Systems and Benchmarking Lab, pursuing tenure through funded prototypes and open datasets.",
+                "result": "Your ideal path is experimental systems impact\u2014archetype: Experimental CS Research Director."
+            },
+            "C": {
+                "text": "Accept founding directorship of the Center for CS Education and Open Scholarship, pursuing tenure through curriculum innovation and science communication.",
+                "result": "Your ideal path is advancing CS through pedagogy\u2014archetype: CS Education & Scholarship Leader."
+            }
+        }
+    }
+]
