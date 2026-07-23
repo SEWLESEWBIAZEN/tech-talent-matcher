@@ -1,5 +1,5 @@
-streamlit==1.45.0
-openai==1.30.5
-PyYAML==6.0.1
-streamlit-authenticator==0.4.0
-pandas==2.2.2
+streamlit
+openai
+PyYAML
+streamlit-authenticator==0.4.1
+pandas
