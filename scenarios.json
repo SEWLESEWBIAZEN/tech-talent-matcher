@@ -1,161 +1,121 @@
 [
     {
-        "title": "The 9 AM Alert",
-        "setup": "You just clocked in. PagerDuty screams: production database latency is spiking and checkout is failing.",
-        "output": "CPU: 98% | DB Connections: 842 | Error rate: 12%",
-        "prompt": "What's your first instinct?",
+        "title": "The 9 AM Pager Storm",
+        "setup": "You just sat down with coffee. PagerDuty screams: API latency spiked to 8s, error rate 40%. The deploy from 30 minutes ago is live.",
+        "output": "ERROR 500: Internal Server Error\nLatency: 8473ms\nEndpoint: /api/v2/checkout",
+        "prompt": "What's your very first move?",
         "options": {
             "A": {
-                "text": "SSH into the server and inspect running processes and slow query logs.",
-                "result": "You have the mindset of an SRE / Infrastructure Engineer\u2014calm, systems-level thinking under pressure."
+                "text": "SSH into production, check the latest deploy logs, and roll back immediately.",
+                "result": "You think like a Backend/SRE Engineer\u2014systems and reliability are your home."
             },
             "B": {
-                "text": "Revert the last code deployment immediately via the CI pipeline.",
-                "result": "You think like a Backend Software Engineer\u2014code-first, rapid mitigation."
+                "text": "Query the analytics warehouse to see if the errors cluster by region, device, or user tier.",
+                "result": "You think like a Data/ML Engineer\u2014patterns in chaos reveal the truth."
             },
             "C": {
-                "text": "Pull the real-time transaction dataset to see if the spike correlates with a specific region or feature.",
-                "result": "You have a Data Analyst / Data Engineer instinct\u2014evidence before action."
+                "text": "Draft a status page update and alert customer support to prepare for inbound tickets.",
+                "result": "You think like a Product/Operations Lead\u2014user trust and communication come first."
             }
         }
     },
     {
-        "title": "The Bad Migration",
-        "setup": "Your investigation reveals a teammate's migration script added a missing index and locked the orders table. Rollback isn't automatic.",
-        "output": "Locked table: orders | Migration v2.4 | Lock duration: 14m",
-        "prompt": "The table is still locked. How do you proceed?",
+        "title": "The Corrupted Queue",
+        "setup": "Your rollback stabilized traffic, but the database now holds 12,000 malformed records from the bad deploy. The pipeline is frozen.",
+        "output": "Malformed JSON: {\"user_id\": null, \"amount\": \"N/A\", \"status\": undefined}\nQueue depth: 12,043",
+        "prompt": "How do you clear the blockage?",
         "options": {
             "A": {
-                "text": "Manually kill the migration process and execute a reverse SQL script.",
-                "result": "You're a DBA / DevOps Engineer\u2014hands-on with data integrity and deployment pipelines."
+                "text": "Write a Python script to sanitize entries and replay the queue in batches.",
+                "result": "You are a Software/DevOps Engineer\u2014automation and code fix the mess."
             },
             "B": {
-                "text": "Ship an emergency hotfix in the API to queue orders in memory and bypass the DB temporarily.",
-                "result": "You're a Software Engineer\u2014creative workaround, prioritizing user experience."
+                "text": "Analyze the corruption pattern to build a classifier that flags bad payloads before ingestion.",
+                "result": "You are a Data/ML Engineer\u2014prevention through models and metrics."
             },
             "C": {
-                "text": "Build a quick internal dashboard tracking which orders are stuck so support can reach out.",
-                "result": "You're a Product Operations / Data Engineer\u2014visibility and coordination matter most."
+                "text": "Interview affected users to understand the broken journey, then propose a frontend validation guardrail.",
+                "result": "You are a Product/UX Engineer\u2014fixing the root cause at the human layer."
             }
         }
     },
     {
-        "title": "Customer Complaints Flood In",
-        "setup": "Orders went through twice or not at all. Support channels are exploding. The CTO demands an ETA in 15 minutes.",
-        "output": "Tickets: 342 | Duplicate orders: 18% | Social mentions: +400%",
-        "prompt": "The pressure is public. What's your move?",
+        "title": "The War Room",
+        "setup": "Engineering is stable, but the CTO, Head of Sales, and Customer Success lead are demanding answers in a war room. The board meeting is in 2 hours.",
+        "output": "Customer impact: 3,400 orders delayed\nRevenue at risk: $1.2M\nRoot cause: Unknown",
+        "prompt": "How do you lead the room?",
         "options": {
             "A": {
-                "text": "Draft a transparent status page and live incident timeline for users.",
-                "result": "You're a Frontend Engineer / DevRel\u2014communication and user trust are your tools."
+                "text": "Present a technical post-mortem with architecture diagrams and proposed circuit-breaker changes.",
+                "result": "You are a Systems Architect\u2014credibility comes from technical depth."
             },
             "B": {
-                "text": "Jump into the war room, assign owners, and coordinate engineering, support, and legal in real time.",
-                "result": "You're an Engineering Manager / Technical Program Manager\u2014systems of people, not just code."
+                "text": "Build a live dashboard segmenting impact by customer tier and predicting recovery time.",
+                "result": "You are a Data Analyst\u2014decisions must be driven by evidence."
             },
             "C": {
-                "text": "Run a rapid SQL analysis to quantify exactly how many users and dollars are affected.",
-                "result": "You're a Data Scientist / Analyst\u2014metrics drive every decision."
+                "text": "Facilitate a RACI chart and align everyone on a 48-hour recovery timeline with clear owners.",
+                "result": "You are a Product/Program Manager\u2014alignment beats information overload."
             }
         }
     },
     {
-        "title": "The Cache Lies",
-        "setup": "Your status page or data report is serving stale numbers. The root cause is a distributed caching layer out of sync with the DB.",
-        "output": "Cache hit rate: 99.9% | Stale key: order_status | TTL: 300s",
-        "prompt": "Users are seeing incorrect recovery messages. How do you fix the truth?",
+        "title": "The Architecture Mandate",
+        "setup": "Leadership approves your plan and assigns you to own the permanent fix. You must choose the foundation for the new system.",
+        "output": "Requirements: 99.99% uptime, real-time ingestion, cross-team visibility",
+        "prompt": "What is your blueprint?",
         "options": {
             "A": {
-                "text": "Flush the cache cluster, verify consistency with DB replicas, and deploy a cache-bypass flag.",
-                "result": "You're a Backend / Distributed Systems Engineer\u2014deep knowledge of infrastructure state."
+                "text": "Redesign the microservices with strict API contracts, circuit breakers, and canary releases.",
+                "result": "You are a Platform/Backend Engineer\u2014reliable infrastructure is your craft."
             },
             "B": {
-                "text": "Redesign the status page UI to clearly distinguish 'pending verification' from 'resolved'.",
-                "result": "You're a UX / Frontend Engineer\u2014design solves ambiguity when data is messy."
+                "text": "Implement an anomaly detection pipeline using streaming data and automated rollback triggers.",
+                "result": "You are an ML/Data Engineer\u2014intelligence should be embedded in the system."
             },
             "C": {
-                "text": "Write an audit script that compares cache vs. database values every 30 seconds and alerts on divergence.",
-                "result": "You're a Data Engineer / QA Automation specialist\u2014testing and observability first."
+                "text": "Design a unified user flow with progressive disclosure and real-time validation across all touchpoints.",
+                "result": "You are a Product/UX Designer\u2014experience is the architecture."
             }
         }
     },
     {
-        "title": "Security Flags the Logs",
-        "setup": "In the error logs you just flushed, there are raw customer emails and partial card tokens. Security wants it contained now.",
-        "output": "Leaked fields: email, last4 | Log files: 14 | Retention: 7 days",
-        "prompt": "There's a potential data exposure in your logs. What's your instinct?",
+        "title": "The Sprint Collision",
+        "setup": "Mid-implementation, tensions flare: one engineer wants to ship the fix now, another demands two weeks of testing, and Design insists on a new interface.",
+        "output": "Slack #war-room:\nEng A: 'Ship it.'\nEng B: 'No tests, no merge.'\nDesign: 'We need a new checkout flow.'",
+        "prompt": "How do you resolve the deadlock?",
         "options": {
             "A": {
-                "text": "Sanitize the log pipeline, rotate keys, and write a patch to mask PII at ingestion.",
-                "result": "You're a Security Engineer\u2014protecting users is non-negotiable."
+                "text": "Pair with both engineers, merge their branches, and write integration tests together in real time.",
+                "result": "You are a Senior Engineer/Mentor\u2014code and collaboration are solved together."
             },
             "B": {
-                "text": "Document the breach timeline, affected users, and remediation steps for compliance.",
-                "result": "You're a Technical Program Manager / Compliance Analyst\u2014process and accountability matter."
+                "text": "Propose an A/B testing framework so the team can validate the fix and new design with live metrics.",
+                "result": "You are a Growth/Data Engineer\u2014data resolves opinions."
             },
             "C": {
-                "text": "Build an automated scanner that detects PII patterns in logs before they hit storage.",
-                "result": "You're an ML / Automation Engineer\u2014prevent the next one with intelligence."
+                "text": "Mediate priorities, redefine the sprint goals with stakeholders, and protect the team's focus.",
+                "result": "You are an Engineering Manager/Tech Lead\u2014people and process make products work."
             }
         }
     },
     {
-        "title": "The 5 PM Post-Mortem",
-        "setup": "Security is contained. Leadership needs a root-cause analysis with visual evidence delivered before end of day.",
-        "output": "Incident duration: 4h 12m | Affected users: 1,204 | Root cause: missing index + cache invalidation failure",
-        "prompt": "You have two hours to make the complex failure understandable. What's your approach?",
+        "title": "The End-of-Day Choice",
+        "setup": "The deploy is green, metrics recovered, and the team is aligned. Your manager asks what you want to own permanently as the company scales.",
+        "output": "Status: All systems green.\nLatency: 120ms\nErrors: 0.02%\nTeam morale: High",
+        "prompt": "Based on this day, where do you belong?",
         "options": {
             "A": {
-                "text": "Build an interactive timeline dashboard with graphs linking latency, errors, and deployments.",
-                "result": "You're a Data Visualization / BI Engineer\u2014stories are told through data."
+                "text": "Own the core platform, build the infrastructure that prevents crises, and scale the backend.",
+                "result": "Your path: Software Engineer / Platform Architect / SRE."
             },
             "B": {
-                "text": "Write a concise, narrative technical report with clear sections: timeline, root cause, fixes, prevention.",
-                "result": "You're a Technical Writer / Senior Engineer\u2014clarity and documentation are leadership tools."
+                "text": "Own the data and intelligence layer\u2014turn every incident into a predictive model and strategic insight.",
+                "result": "Your path: Data Engineer / ML Engineer / Data Scientist."
             },
             "C": {
-                "text": "Prepare a live demo replaying the fix in a staging environment for the CTO.",
-                "result": "You're a DevRel / Solutions Engineer\u2014showing, not telling, builds trust."
-            }
-        }
-    },
-    {
-        "title": "The Architecture Pattern",
-        "setup": "Your analysis reveals this isn't a one-off. A single DB dependency is cascading failures across three microservices.",
-        "output": "Dependency graph: orders -> payments -> notifications | Single point: legacy DB v1",
-        "prompt": "This crisis reveals a deeper structural risk. How do you respond?",
-        "options": {
-            "A": {
-                "text": "Propose a phased migration to decouple services with event queues and separate data stores.",
-                "result": "You're a Systems Architect / Senior Backend Engineer\u2014designing for resilience."
-            },
-            "B": {
-                "text": "Recommend restructuring the team into dedicated service squads with clear ownership boundaries.",
-                "result": "You're an Engineering Manager / Organizational Designer\u2014scaling people to match architecture."
-            },
-            "C": {
-                "text": "Suggest training an anomaly detection model on dependency latency to predict cascades.",
-                "result": "You're an ML / AI Engineer\u2014intelligence and prediction over manual monitoring."
-            }
-        }
-    },
-    {
-        "title": "Choose Your Squad",
-        "setup": "The day ends. The CTO asks you to pick your permanent squad based on how you naturally solved problems today.",
-        "output": "Crisis resolved. 1,204 users notified. 14 logs sanitized. Architecture proposal submitted.",
-        "prompt": "Looking back at your instincts\u2014systems, people, or intelligence\u2014which path do you commit to?",
-        "options": {
-            "A": {
-                "text": "The Infrastructure & Reliability squad\u2014keeping production alive and scaling architecture.",
-                "result": "You belong in SRE, DevOps, or Systems Engineering\u2014stability is your craft."
-            },
-            "B": {
-                "text": "The Product & Experience squad\u2014shipping features, designing interfaces, and translating tech to users.",
-                "result": "You belong in Software Engineering, UX, or Product Management\u2014building is your craft."
-            },
-            "C": {
-                "text": "The Intelligence & Insights squad\u2014turning chaos into data, predictions, and strategic direction.",
-                "result": "You belong in Data Science, AI/ML, or Analytics\u2014understanding is your craft."
+                "text": "Own the product vision, user experience, and cross-functional strategy that keeps teams aligned.",
+                "result": "Your path: Product Manager / UX Lead / Engineering Manager."
             }
         }
     }

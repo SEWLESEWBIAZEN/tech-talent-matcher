@@ -3,10 +3,9 @@ import streamlit_authenticator as stauth
 from constants import list_tech_sectors
 from database import load_scenarios, save_scenarios
 from ai_services import generate_ai_scenarios, generate_final_profile, generate_learning_roadmap
-from components import admin_dashboard
+from components import admin_dashboard, api_key_manager
 import yaml
 from yaml.loader import SafeLoader
-from components import admin_dashboard, api_key_manager
 
 # --- AUTHENTICATION SETUP ---
 # In a real SaaS, you would store these securely in a database. 
@@ -122,10 +121,17 @@ elif st.session_state.get('authentication_status'):
     with st.sidebar:
         st.subheader("🛠️ Admin Controls")
         if st.button("Manage Manual Scenarios"):
+            st.session_state.show_admin_dashboard = True
+            st.session_state.show_api_key_manager = False
+
+        if st.button("🔑 Manage API Key"):
+            st.session_state.show_api_key_manager = True
+            st.session_state.show_admin_dashboard = False
+
+        if st.session_state.get("show_admin_dashboard"):
             admin_dashboard()
 
-        # NEW: API Key Settings Button
-        if st.button("🔑 Manage API Key"):
+        if st.session_state.get("show_api_key_manager"):
             api_key_manager(authenticator, config)
             
         st.divider()
