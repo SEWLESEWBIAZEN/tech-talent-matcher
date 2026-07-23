@@ -1,17 +1,10 @@
 cookie:
   expiry_days: 30
   key: super_secret_key
-  name: tech_talent
+  name: tech_talent_v2
 credentials:
   usernames:
     admin:
+      email: admin@techtalent.com
       name: Admin
-      password: $2b$12$dStXiXtXCfzdw9sE3tjH5uT1jQ3EPCKkpihOhpWFUdAwyVUqR/Sr6
-    sewlesewb:
-      email: sewlesewbiazen65@gmail.com
-      first_name: Sewlesew
-      last_name: Belete
-      logged_in: false
-      password: $2b$12$kNgG3czEgqXuP.Vfr1ryCOmNisH3MLmFAwSBqnoRu8I89En0WNwcS
-      password_hint: '1234'
-      roles: null
+      password: $2b$12$Ivtkxk4DQkzlZ7.KRH/gIeAdp8Pm9r3VBtnaGEcPDmwzoQeq6vNSu

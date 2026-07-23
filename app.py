@@ -25,10 +25,29 @@ config = {
 try:
     with open('config.yaml', 'r') as file:
         config = yaml.load(file, Loader=SafeLoader)
-except FileNotFoundError:   
-    hasher = stauth.Hasher()
-    hashed_password = hasher.hash('password');    
-    config['credentials']['usernames']['admin'] = {'name': 'Admin', 'password': hashed_password}
+    
+    # SAFETY CHECK: If old config exists without 'email', force overwrite
+    if 'admin' in config.get('credentials', {}).get('usernames', {}):
+        if 'email' not in config['credentials']['usernames']['admin']:
+            raise FileNotFoundError("Old config format, regenerating.")
+
+except (FileNotFoundError, Exception):
+    # Create a fresh, valid config with email
+    hashed_password = stauth.Hasher.hash('password')
+    
+    config = {
+        'credentials': {
+            'usernames': {
+                'admin': {
+                    'name': 'Admin', 
+                    'password': hashed_password,
+                    'email': 'admin@techtalent.com'
+                }
+            }
+        },
+        'cookie': {'name': 'tech_talent_v2', 'key': 'super_secret_key', 'expiry_days': 30}
+    }
+    
     with open('config.yaml', 'w') as file:
         yaml.dump(config, file)
 
