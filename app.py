@@ -6,6 +6,7 @@ from ai_services import generate_ai_scenarios, generate_final_profile, generate_
 from components import admin_dashboard
 import yaml
 from yaml.loader import SafeLoader
+from components import admin_dashboard, api_key_manager
 
 # --- AUTHENTICATION SETUP ---
 # In a real SaaS, you would store these securely in a database. 
@@ -122,10 +123,26 @@ elif st.session_state.get('authentication_status'):
         st.subheader("🛠️ Admin Controls")
         if st.button("Manage Manual Scenarios"):
             admin_dashboard()
+
+        # NEW: API Key Settings Button
+        if st.button("🔑 Manage API Key"):
+            api_key_manager(authenticator, config)
+            
+        st.divider()
+
+        # Check if user has a saved key
+        current_user = st.session_state.get("username")
+        saved_api_key = config['credentials']['usernames'].get(current_user, {}).get('api_key', None)
+        
+        # We will use this saved key instead of the text input!
+        if saved_api_key:
+            st.success("NVIDIA API Key Active ✅")
+            nvidia_api_key = saved_api_key
+            openai_api_key_final = saved_api_key       
             
         st.divider()
         st.subheader("🤖 AI Scenario Generator")
-        nvidia_api_key = st.text_input("Enter NVIDIA API Key", type="password")       
+        nvidia_api_key = saved_api_key    
 
         selected_sector = st.selectbox("Which tech sector do you want to test for?", list_tech_sectors())
         num_scenarios = st.number_input("How many scenarios?", min_value=1, max_value=10, value=3)
@@ -150,7 +167,7 @@ elif st.session_state.get('authentication_status'):
             st.rerun()
             
         st.divider()
-        openai_api_key_final = st.text_input("NVIDIA API Key for Final Profile", type="password")
+        openai_api_key_final = saved_api_key
 
     # --- RUN THE QUIZ DYNAMICALLY ---
     scenarios = load_scenarios()

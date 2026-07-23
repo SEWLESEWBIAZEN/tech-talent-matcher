@@ -1,101 +1,161 @@
 [
     {
-        "title": "The Morning Anomaly",
-        "setup": "You are reviewing a peer-reviewed complexity proof in the faculty lounge before stand-up. A critical lemma in a graph-coloring algorithm contains a logical gap, and the PI will ask about it in ten minutes.",
-        "output": "Lemma 4.2: If G is 3-colorable, then \u03c7(G) \u2264 3 \u2200v \u2208 V. [ERROR: Contradicts counterexample v=7 in induced subgraph H]",
-        "prompt": "What is your first instinct to handle the discrepancy?",
+        "title": "The 9 AM Alert",
+        "setup": "You just clocked in. PagerDuty screams: production database latency is spiking and checkout is failing.",
+        "output": "CPU: 98% | DB Connections: 842 | Error rate: 12%",
+        "prompt": "What's your first instinct?",
         "options": {
             "A": {
-                "text": "Fire up a proof assistant (Coq/Lean) to formalize the lemma and isolate the exact logical break.",
-                "result": "You are drawn to formal verification and pure theoretical repair\u2014archetype: Theoretical CS Researcher."
+                "text": "SSH into the server and inspect running processes and slow query logs.",
+                "result": "You have the mindset of an SRE / Infrastructure Engineer\u2014calm, systems-level thinking under pressure."
             },
             "B": {
-                "text": "Write a Python script to generate random graphs and stress-test the coloring algorithm empirically.",
-                "result": "You prefer empirical validation and experimental systems\u2014archetype: Experimental/Applied CS Researcher."
+                "text": "Revert the last code deployment immediately via the CI pipeline.",
+                "result": "You think like a Backend Software Engineer\u2014code-first, rapid mitigation."
             },
             "C": {
-                "text": "Draft a concise pedagogical note explaining the proof gap for your graduate seminar syllabus.",
-                "result": "You prioritize knowledge dissemination and education\u2014archetype: CS Educator & Science Communicator."
+                "text": "Pull the real-time transaction dataset to see if the spike correlates with a specific region or feature.",
+                "result": "You have a Data Analyst / Data Engineer instinct\u2014evidence before action."
             }
         }
     },
     {
-        "title": "The Stand-Up Reckoning",
-        "setup": "Your action confirmed the flaw is real. At the 11:00 lab stand-up, the director announces a funding deadline looms and asks how the lab should strategically position this discovery.",
-        "output": "",
-        "prompt": "How do you propose the lab responds strategically?",
+        "title": "The Bad Migration",
+        "setup": "Your investigation reveals a teammate's migration script added a missing index and locked the orders table. Rollback isn't automatic.",
+        "output": "Locked table: orders | Migration v2.4 | Lock duration: 14m",
+        "prompt": "The table is still locked. How do you proceed?",
         "options": {
             "A": {
-                "text": "Propose a new theoretical framework extending the proof with an added constraint model, seeking pure mathematics funding.",
-                "result": "You push for deep theoretical advancement\u2014archetype: Theoretical CS Researcher."
+                "text": "Manually kill the migration process and execute a reverse SQL script.",
+                "result": "You're a DBA / DevOps Engineer\u2014hands-on with data integrity and deployment pipelines."
             },
             "B": {
-                "text": "Pivot the grant narrative to benchmark real-world network failures caused by this algorithmic gap, targeting applied systems funding.",
-                "result": "You leverage discovery for practical impact\u2014archetype: Experimental/Applied CS Researcher."
+                "text": "Ship an emergency hotfix in the API to queue orders in memory and bypass the DB temporarily.",
+                "result": "You're a Software Engineer\u2014creative workaround, prioritizing user experience."
             },
             "C": {
-                "text": "Suggest an open-access workshop series and updated curriculum module to prevent future misuse in education.",
-                "result": "You focus on institutional learning\u2014archetype: CS Educator & Science Communicator."
+                "text": "Build a quick internal dashboard tracking which orders are stuck so support can reach out.",
+                "result": "You're a Product Operations / Data Engineer\u2014visibility and coordination matter most."
             }
         }
     },
     {
-        "title": "The Grant Review",
-        "setup": "The NSF-style review panel arrives at noon. They scrutinize your strategic proposal and demand deliverables aligned with the path you chose after the stand-up.",
-        "output": "Deliverable Metrics: Theorem proofs (A), System benchmarks (B), MOOC enrollment & citation reach (C)",
-        "prompt": "Which deliverable do you defend as the primary milestone?",
+        "title": "Customer Complaints Flood In",
+        "setup": "Orders went through twice or not at all. Support channels are exploding. The CTO demands an ETA in 15 minutes.",
+        "output": "Tickets: 342 | Duplicate orders: 18% | Social mentions: +400%",
+        "prompt": "The pressure is public. What's your move?",
         "options": {
             "A": {
-                "text": "Defend a 12-month proof roadmap with formal verification milestones and peer-reviewed conjectures.",
-                "result": "You thrive in rigorous theoretical milestones\u2014archetype: Theoretical CS Researcher."
+                "text": "Draft a transparent status page and live incident timeline for users.",
+                "result": "You're a Frontend Engineer / DevRel\u2014communication and user trust are your tools."
             },
             "B": {
-                "text": "Present a prototype detector running on live cluster traffic with reproducible benchmark datasets.",
-                "result": "You value tangible, measurable systems\u2014archetype: Experimental/Applied CS Researcher."
+                "text": "Jump into the war room, assign owners, and coordinate engineering, support, and legal in real time.",
+                "result": "You're an Engineering Manager / Technical Program Manager\u2014systems of people, not just code."
             },
             "C": {
-                "text": "Show enrollment projections for the revised open curriculum and peer-review guidelines for textbooks.",
-                "result": "You measure success by educational reach\u2014archetype: CS Educator & Science Communicator."
+                "text": "Run a rapid SQL analysis to quantify exactly how many users and dollars are affected.",
+                "result": "You're a Data Scientist / Analyst\u2014metrics drive every decision."
             }
         }
     },
     {
-        "title": "The Replication Crisis",
-        "setup": "At 3:00 PM, a panicked first-year PhD student finds their replication study broken\u2014directly tied to the flawed theorem from this morning. The advisor is at a conference and you are the senior researcher present.",
-        "output": "Traceback (replication): AssertionError: \u03c7(G) != 3 in subgraph H (see Lemma 4.2).",
-        "prompt": "How do you guide the student through the crisis?",
+        "title": "The Cache Lies",
+        "setup": "Your status page or data report is serving stale numbers. The root cause is a distributed caching layer out of sync with the DB.",
+        "output": "Cache hit rate: 99.9% | Stale key: order_status | TTL: 300s",
+        "prompt": "Users are seeing incorrect recovery messages. How do you fix the truth?",
         "options": {
             "A": {
-                "text": "Sit with them at the whiteboard to derive a corrected sub-lemma and salvage the theoretical contribution.",
-                "result": "You mentor through rigorous logic\u2014archetype: Theoretical CS Researcher."
+                "text": "Flush the cache cluster, verify consistency with DB replicas, and deploy a cache-bypass flag.",
+                "result": "You're a Backend / Distributed Systems Engineer\u2014deep knowledge of infrastructure state."
             },
             "B": {
-                "text": "Help them redesign the replication with control graphs, synthetic datasets, and statistical power analysis.",
-                "result": "You mentor through experimental design\u2014archetype: Experimental/Applied CS Researcher."
+                "text": "Redesign the status page UI to clearly distinguish 'pending verification' from 'resolved'.",
+                "result": "You're a UX / Frontend Engineer\u2014design solves ambiguity when data is messy."
             },
             "C": {
-                "text": "Encourage them to document the failure, write a replication report, and present it at the student journal club.",
-                "result": "You mentor through scholarly communication\u2014archetype: CS Educator & Science Communicator."
+                "text": "Write an audit script that compares cache vs. database values every 30 seconds and alerts on divergence.",
+                "result": "You're a Data Engineer / QA Automation specialist\u2014testing and observability first."
             }
         }
     },
     {
-        "title": "The Offer",
-        "setup": "As evening falls, the department chair offers you a tenure-track research position shaped entirely by how you navigated the day's crisis, funding defense, and mentorship.",
-        "output": "",
-        "prompt": "Which door do you enter to begin your permanent research career?",
+        "title": "Security Flags the Logs",
+        "setup": "In the error logs you just flushed, there are raw customer emails and partial card tokens. Security wants it contained now.",
+        "output": "Leaked fields: email, last4 | Log files: 14 | Retention: 7 days",
+        "prompt": "There's a potential data exposure in your logs. What's your instinct?",
         "options": {
             "A": {
-                "text": "Accept leadership of the Formal Methods and Algorithms Group, pursuing tenure through peer-reviewed proofs and conjectures.",
-                "result": "Your ideal path is pure theoretical discovery\u2014archetype: Theoretical CS Professor."
+                "text": "Sanitize the log pipeline, rotate keys, and write a patch to mask PII at ingestion.",
+                "result": "You're a Security Engineer\u2014protecting users is non-negotiable."
             },
             "B": {
-                "text": "Accept directorship of the Applied Systems and Benchmarking Lab, pursuing tenure through funded prototypes and open datasets.",
-                "result": "Your ideal path is experimental systems impact\u2014archetype: Experimental CS Research Director."
+                "text": "Document the breach timeline, affected users, and remediation steps for compliance.",
+                "result": "You're a Technical Program Manager / Compliance Analyst\u2014process and accountability matter."
             },
             "C": {
-                "text": "Accept founding directorship of the Center for CS Education and Open Scholarship, pursuing tenure through curriculum innovation and science communication.",
-                "result": "Your ideal path is advancing CS through pedagogy\u2014archetype: CS Education & Scholarship Leader."
+                "text": "Build an automated scanner that detects PII patterns in logs before they hit storage.",
+                "result": "You're an ML / Automation Engineer\u2014prevent the next one with intelligence."
+            }
+        }
+    },
+    {
+        "title": "The 5 PM Post-Mortem",
+        "setup": "Security is contained. Leadership needs a root-cause analysis with visual evidence delivered before end of day.",
+        "output": "Incident duration: 4h 12m | Affected users: 1,204 | Root cause: missing index + cache invalidation failure",
+        "prompt": "You have two hours to make the complex failure understandable. What's your approach?",
+        "options": {
+            "A": {
+                "text": "Build an interactive timeline dashboard with graphs linking latency, errors, and deployments.",
+                "result": "You're a Data Visualization / BI Engineer\u2014stories are told through data."
+            },
+            "B": {
+                "text": "Write a concise, narrative technical report with clear sections: timeline, root cause, fixes, prevention.",
+                "result": "You're a Technical Writer / Senior Engineer\u2014clarity and documentation are leadership tools."
+            },
+            "C": {
+                "text": "Prepare a live demo replaying the fix in a staging environment for the CTO.",
+                "result": "You're a DevRel / Solutions Engineer\u2014showing, not telling, builds trust."
+            }
+        }
+    },
+    {
+        "title": "The Architecture Pattern",
+        "setup": "Your analysis reveals this isn't a one-off. A single DB dependency is cascading failures across three microservices.",
+        "output": "Dependency graph: orders -> payments -> notifications | Single point: legacy DB v1",
+        "prompt": "This crisis reveals a deeper structural risk. How do you respond?",
+        "options": {
+            "A": {
+                "text": "Propose a phased migration to decouple services with event queues and separate data stores.",
+                "result": "You're a Systems Architect / Senior Backend Engineer\u2014designing for resilience."
+            },
+            "B": {
+                "text": "Recommend restructuring the team into dedicated service squads with clear ownership boundaries.",
+                "result": "You're an Engineering Manager / Organizational Designer\u2014scaling people to match architecture."
+            },
+            "C": {
+                "text": "Suggest training an anomaly detection model on dependency latency to predict cascades.",
+                "result": "You're an ML / AI Engineer\u2014intelligence and prediction over manual monitoring."
+            }
+        }
+    },
+    {
+        "title": "Choose Your Squad",
+        "setup": "The day ends. The CTO asks you to pick your permanent squad based on how you naturally solved problems today.",
+        "output": "Crisis resolved. 1,204 users notified. 14 logs sanitized. Architecture proposal submitted.",
+        "prompt": "Looking back at your instincts\u2014systems, people, or intelligence\u2014which path do you commit to?",
+        "options": {
+            "A": {
+                "text": "The Infrastructure & Reliability squad\u2014keeping production alive and scaling architecture.",
+                "result": "You belong in SRE, DevOps, or Systems Engineering\u2014stability is your craft."
+            },
+            "B": {
+                "text": "The Product & Experience squad\u2014shipping features, designing interfaces, and translating tech to users.",
+                "result": "You belong in Software Engineering, UX, or Product Management\u2014building is your craft."
+            },
+            "C": {
+                "text": "The Intelligence & Insights squad\u2014turning chaos into data, predictions, and strategic direction.",
+                "result": "You belong in Data Science, AI/ML, or Analytics\u2014understanding is your craft."
             }
         }
     }

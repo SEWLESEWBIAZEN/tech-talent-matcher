@@ -59,3 +59,27 @@ def admin_dashboard():
         scenarios.append(new_scen)
         save_scenarios(scenarios)
         st.rerun()
+
+import yaml
+
+@st.dialog("🔑 Save Your NVIDIA API Key")
+def api_key_manager(authenticator, config):
+    st.write("Paste your NVIDIA API Key here. It will be securely saved to your profile so you don't have to enter it every time.")
+    new_key = st.text_input("NVIDIA API Key", type="password")
+    
+    if st.button("Save Key"):
+        if new_key:
+            # Find the current logged-in user and save the key to their profile
+            username = st.session_state.get("username")
+            if username:
+                # Update the config dictionary in memory
+                config['credentials']['usernames'][username]['api_key'] = new_key
+                
+                # Save the updated config back to the YAML file
+                with open('config.yaml', 'w') as file:
+                    yaml.dump(config, file)
+                    
+                st.success("API Key saved successfully! Please refresh the app to apply it.")
+                st.rerun()
+        else:
+            st.error("Please enter a valid key.")

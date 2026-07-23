@@ -5,6 +5,7 @@ cookie:
 credentials:
   usernames:
     admin:
+      api_key: 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
       email: admin@techtalent.com
       name: Admin
       password: $2b$12$Ivtkxk4DQkzlZ7.KRH/gIeAdp8Pm9r3VBtnaGEcPDmwzoQeq6vNSu
